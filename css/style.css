@@ -54,7 +54,7 @@ html, body {
 .header__content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     padding: 16px;
     height: 60px;
 }
@@ -63,10 +63,12 @@ html, body {
     font-size: 32px;
     text-decoration: none;
     color: #FFF;
+    max-height: 40px;
+    width: auto;
 }
 
 .header__logo:hover{
-    color:rgb(175, 175, 175);
+    opacity: 0.8;
 }
 
 .header__search {
@@ -138,8 +140,18 @@ box-shadow:
 
 } */
 
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 .movie__info{
     padding: 10px 0px;
+    height: 85px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
 }
 
 .movie__title{
@@ -151,6 +163,8 @@ box-shadow:
     font-size: 14px;
     color: rgb(255, 94, 0);
     padding-top: 5px;
+    margin-top: auto;
+    margin-bottom: 0;
 }
 
 .movie__rating{
@@ -186,13 +200,15 @@ box-shadow:
 }
 
 .footer__logo {
-    font-size: 20px;
+    font-size: 32px;
     text-decoration: none;
     color: #FFF;
+    max-height: 40px;
+    width: auto;
 }
 
 .footer__logo:hover{
-    color:rgb(175, 175, 175);
+    opacity: 0.8;
 }
 
 .footer{
@@ -202,7 +218,8 @@ box-shadow:
 .footer__content {
     padding: 16px;
     justify-content: space-between;
-    width: 100%;  
+    width: 100%; 
+    padding-top:0px; 
 }
 
 .footer__info{
@@ -235,6 +252,9 @@ box-shadow:
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    animation: fade-in 0.5s ease-in-out;
+    opacity: 1;
 }
 
 .modal__card {
@@ -369,12 +389,14 @@ ul li {
 }
 
 .header__search--form {
-    position: relative;
-    width: 240px;
+    position: absolute;
+    width: 210px;
     margin: 0;
     background: #ffffff;
     border-bottom: 4px solid rgb(255, 94, 0);
     border-radius: 5px;
+    right: 0;
+    margin-right: 20px;
   }
   .header__search, .header__search--button {
     border: none;
@@ -408,4 +430,15 @@ ul li {
     margin: 0 auto;
     text-align:center;
     padding-top: 200px;
+  }
+
+  .header__language{
+    text-decoration: none;
+    height: 32px;
+    width: auto;
+    margin-left: 8px;
+  }
+
+  .header__language:hover{
+    opacity: 0.8;
   }

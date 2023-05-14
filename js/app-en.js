@@ -1,7 +1,7 @@
 const apiKey = '31f6246705fead5778179a71d5408a0a';
 var currentPage = 1;
-var url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=uk-UA&page=${currentPage}`;
-const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=uk-UA`;
+var url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-EN&page=${currentPage}`;
+const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-EN`;
 var searchUrl;
 
 async function getMovies(url) {
@@ -91,7 +91,7 @@ const modalEl = document.querySelector(".modal");
 
 async function openModal(movieId) {
   console.log(movieId);
-  const detailUrl = `https://api.themoviedb.org/3/movie/${movieId}}?api_key=${apiKey}&language=uk-UA`;
+  const detailUrl = `https://api.themoviedb.org/3/movie/${movieId}}?api_key=${apiKey}&language=en-EN`;
   const resp = await fetch(detailUrl);
   const detResp = await resp.json();
 
@@ -109,14 +109,14 @@ async function openModal(movieId) {
   </p>
   <ul class="modal__movie--info">
       <div class="loader"></div>
-      <li class="modal__movie--genre"><span class="accent">Жанр:</span> ${detResp.genres.map((el)=>` <span>${el.name}</span>`)}</li>
-      <li class="modal__movie--runtime"><span class="accent">Тривалість: </span>${detResp.runtime} хвилин</li>
-      <li class="modal__movie--link"><span class="accent">Рейтинг: </span> ${detResp.vote_average} (${detResp.vote_count} оцінок)</li>
-      <li class="modal__movie--overview"><span class="accent">Опис: </span>${detResp.overview}</li>
+      <li class="modal__movie--genre"><span class="accent">Genre:</span> ${detResp.genres.map((el)=>` <span>${el.name}</span>`)}</li>
+      <li class="modal__movie--runtime"><span class="accent">Duration: </span>${detResp.runtime} minutes</li>
+      <li class="modal__movie--link"><span class="accent">Rating: </span> ${detResp.vote_average} (${detResp.vote_count} votes)</li>
+      <li class="modal__movie--overview"><span class="accent">Overview: </span>${detResp.overview}</li>
   </ul>
   <div class="modal__buttons">
-    <button type="button" class="modal__button modal__button--close">Закрити</button>
-    <a href="./uk/movie.html" target="_blank"><button type="button" class="modal__button modal__button--page">На сторінку</button></a>
+    <button type="button" class="modal__button modal__button--close">Close</button>
+    <a href="./movie.html" target="_blank"><button type="button" class="modal__button modal__button--page">To page</button></a>
   </div>
   </div>`
   const buttonClose = document.querySelector(".modal__button--close");
@@ -223,7 +223,7 @@ function handleNextPrevButtonClick(event) {
   clearMovies();
   var currentPageElement = document.querySelector(".pagination__active");
   var currentPage = currentPageElement.textContent;
-  url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=uk-UA&page=${currentPage}`;
+  url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-EN&page=${currentPage}`;
   getMovies(url);
 }
 paginationElements.addEventListener('click', handleNextPrevButtonClick);
@@ -285,11 +285,11 @@ scrollButton.addEventListener('click', function () {
 
 function changeBackground() {
   var images = [
-    `url("./images/backdrop_avatar.jpg")`,
-    `url("./images/backdrop_guardiansOfTheGalaxy.jpg")`,
-    `url("./images/backdrop_quantomania.jpeg")`,
-    `url("./images/backdrop_shazam.jpg")`,
-    `url("./images/backdrop_johnwick.jpg")`
+    `url("../images/backdrop_avatar.jpg")`,
+    `url("../images/backdrop_guardiansOfTheGalaxy.jpg")`,
+    `url("../images/backdrop_quantomania.jpeg")`,
+    `url("../images/backdrop_shazam.jpg")`,
+    `url("../images/backdrop_johnwick.jpg")`
   ];
   var currentImageIndex = 0;
   var body = document.querySelector("body");
@@ -341,7 +341,7 @@ async function searchMovies(event) {
     scrollToTop();
     pagination.style.display='block';
   } else {
-    searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=uk-UA&query=${query}&page=${currentPage}&include_adult=false`;
+    searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-EN&query=${query}&page=${currentPage}&include_adult=false`;
     getMovies(searchUrl);
     scrollToTop();
   }

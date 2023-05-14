@@ -60,13 +60,15 @@ html, body {
 }
 
 .header__logo {
-    font-size: 32px;
-    text-decoration: none;
-    color: #FFF;
+  font-size: 32px;
+  text-decoration: none;
+  color: #FFF;
+  max-height: 40px;
+  width: auto;
 }
 
 .header__logo:hover{
-    color:rgb(175, 175, 175);
+  opacity: 0.8;
 }
 
 .header__search {
@@ -77,13 +79,15 @@ html, body {
 }
 
 .footer__logo {
-    font-size: 20px;
-    text-decoration: none;
-    color: #FFF;
+  font-size: 32px;
+  text-decoration: none;
+  color: #FFF;
+  max-height: 40px;
+  width: auto;
 }
 
 .footer__logo:hover{
-    color:rgb(175, 175, 175);
+  opacity: 0.8;
 }
 
 .footer{
@@ -238,3 +242,13 @@ html, body {
     color:rgb(255, 94, 0);
   }
   
+  .header__language{
+    text-decoration: none;
+    height: 32px;
+    width: auto;
+    margin-left: 8px;
+  }
+
+  .header__language:hover{
+    opacity: 0.8;
+  }

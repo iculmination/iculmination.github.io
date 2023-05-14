@@ -8,18 +8,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="./images/fav_logo.png" type="image/png">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Каталог фільмів</title>
+    <link rel="icon" href="../images/fav_logo.png" type="image/png">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Movie catalog</title>
 </head>
 
 <header class="header">
     <div class="container bottom__border">
         <div class="header__content">
-            <a href="index.html" class="header__logo"> <img class="header__logo" src="./images/logo.png" alt=""> </a>
-            <a class="header__language" href="./en/en.html"> <img class="header__language" src="./images/lang_uk.png" alt=""> </a>
+            <a href="en.html" class="header__logo"> <img class="header__logo" src="../images/logo.png" alt=""> </a>
+            <a class="header__language" href="../index.html"> <img class="header__language" src="../images/lang_en.png" alt=""> </a>
             <form class="header__search--form">
-                <input type="text" class="header__search" placeholder="Пошук"></input>
+                <input type="text" class="header__search" placeholder="Search"></input>
                 <button type="submit" class="header__search--button" onclick="searchMovies(event)"></button>
             </form>
         </div>
@@ -47,19 +47,18 @@
     <div class="scroll__button">
         <p class="arrow__top">⇧</p>
     </div>
-    <script src="js/app.js"></script>
+    <script src="../js/app-en.js"></script>
 </body>
 
 <footer class="footer">
     <div class="container top__border">
         <div class="footer__logo--container">
-            <a href="index.html" class="footer__logo"> <img class="footer__logo" src="./images/logo.png" alt=""> </a>
+            <a href="en.html" class="footer__logo"> <img class="footer__logo" src="../images/logo.png" alt=""> </a>
             <p class="footer__info">© 2023 OB-Movies</p>
         </div>
         <div class="footer__content">
-            <p class="footer__info">Дякуємо, що скористалися нашим каталогом фільмів!</p>
-            <p class="footer__info">Не забувайте, що наш сайт постійно оновлюється з новими релізами і ексклюзивними
-                прем'єрами. Приєднуйтесь до нас, щоб не пропустити найцікавіше!</p>
+            <p class="footer__info">Thank you for using our movie catalog!</p>
+            <p class="footer__info">Do not forget that our site is constantly updated with new releases and exclusive premieres. Join us so you don't miss the best!</p>
         </div>
     </div>
 </footer>

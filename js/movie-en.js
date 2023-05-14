@@ -1,7 +1,7 @@
 const apiKey = '31f6246705fead5778179a71d5408a0a';
 var currentPage = 1;
-var url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=uk-UA&page=${currentPage}`;
-const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=uk-UA`;
+var url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-EN&page=${currentPage}`;
+const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-EN`;
 
 // moviesContainer.addEventListener('click', function(event) {
 //   const movieElement = event.target.closest('.movie');
@@ -55,7 +55,7 @@ const modalEl = document.querySelector(".movie");
 
 async function openModal(movieId) {
   console.log(movieId);
-  const detailUrl = `https://api.themoviedb.org/3/movie/${movieId}}?api_key=${apiKey}&language=uk-UA`;
+  const detailUrl = `https://api.themoviedb.org/3/movie/${movieId}}?api_key=${apiKey}&language=en-EN`;
   const resp = await fetch(detailUrl);
   const detResp = await resp.json();
 
@@ -65,13 +65,13 @@ async function openModal(movieId) {
   document.body.classList.add("stop--scrolling");
   if (detResp.budget ===0)
   {
-    var budget = "Інформація відсутня"
+    var budget = "No information"
   } else{
     var budget = detResp.budget + "$";
   }
   if (detResp.overview === '')
   {
-    var overview = "Опис відсутній";
+    var overview = "No information";
   } else{
     var overview = detResp.overview;
   }
@@ -79,17 +79,17 @@ async function openModal(movieId) {
   <img src="${`https://image.tmdb.org/t/p/original/${detResp.backdrop_path}`}" class="movie__backdrop"></img>
   <div class="movie__backdrop--darkened"></div>
 </div>
-<h1 class="movie__h"><span class="movie__title">${detResp.title}</span></h1>
+<h1 class="movie__h"><span class="movie__title">${detResp.original_title}</span></h1>
 <div class="movie__info">
   <img src="${`https://image.tmdb.org/t/p/original/${detResp.poster_path}`}" alt="" class="movie__poster">
   <div class="movie__info--text">
       <div class="loader"></div>
-      <p class="movie__genre"><span class="accent">Жанр:</span>${detResp.genres.map((el)=>` <span>${el.name}</span>`)}</p>
-      <p class="movie__runtime"><span class="accent">Тривалість: </span>${detResp.runtime} хвилин</p>
-      <p class="movie__rating"><span class="accent">Рейтинг: </span>${detResp.vote_average} (${detResp.vote_count} оцінок)</p>
-      <p class="movie__companies"><span class="accent">Компанія:</span>${detResp.production_companies.map((el)=>` <span>${el.name}</span>`)}</p>
-      <p class="movie__budget"><span class="accent">Бюджет: </span>${budget}</p>
-      <p class="movie__overview"><span class="accent">Опис: </span><p>${overview}</p></p>
+      <p class="movie__genre"><span class="accent">Genre:</span>${detResp.genres.map((el)=>` <span>${el.name}</span>`)}</p>
+      <p class="movie__runtime"><span class="accent">Duration: </span>${detResp.runtime} minutes</p>
+      <p class="movie__rating"><span class="accent">Rating: </span>${detResp.vote_average} (${detResp.vote_count} votes)</p>
+      <p class="movie__companies"><span class="accent">Company:</span>${detResp.production_companies.map((el)=>` <span>${el.name}</span>`)}</p>
+      <p class="movie__budget"><span class="accent">Budget: </span>${budget}</p>
+      <p class="movie__overview"><span class="accent">Overview: </span><p>${overview}</p></p>
   </div>
 </div>`
 }
