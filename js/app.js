@@ -1,6 +1,8 @@
 const apiKey = '31f6246705fead5778179a71d5408a0a';
 var currentPage = 1;
-var url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=uk-UA&page=${currentPage}`;
+var genreId = ``;
+// https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=${genreId}&language=uk-UA&page=${currentPage}
+var url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=${genreId}&language=uk-UA&page=${currentPage}`;
 const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=uk-UA`;
 var searchUrl;
 
@@ -22,69 +24,69 @@ async function getMovies(url) {
 
       data.results.forEach(movie => {
 
-      const movieCard = document.createElement('div');
-      movieCard.classList.add('movie');
+        const movieCard = document.createElement('div');
+        movieCard.classList.add('movie');
 
-      const movieCoverInner = document.createElement('div');
-      movieCoverInner.classList.add('movie__cover-inner');
+        const movieCoverInner = document.createElement('div');
+        movieCoverInner.classList.add('movie__cover-inner');
 
-      const movieCover = document.createElement('img');
-      movieCover.classList.add('movie__cover');
-      movieCover.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
-      movieCover.alt = movie.original_title;
+        const movieCover = document.createElement('img');
+        movieCover.classList.add('movie__cover');
+        movieCover.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+        movieCover.alt = movie.original_title;
 
-      const movieCoverDarkened = document.createElement('div');
-      movieCoverDarkened.classList.add('movie__cover--darkened');
+        const movieCoverDarkened = document.createElement('div');
+        movieCoverDarkened.classList.add('movie__cover--darkened');
 
-      const movieInfo = document.createElement('div');
-      movieInfo.classList.add('movie__info');
+        const movieInfo = document.createElement('div');
+        movieInfo.classList.add('movie__info');
 
-      const movieTitle = document.createElement('div');
-      movieTitle.classList.add('movie__title');
-      movieTitle.textContent = movie.title;
+        const movieTitle = document.createElement('div');
+        movieTitle.classList.add('movie__title');
+        movieTitle.textContent = movie.title;
 
-      const movieCategory = document.createElement('div');
-      movieCategory.classList.add('movie__category');
-      movieCategory.textContent = movie.genre_ids.map(id => genres[id]).join(', ');
+        const movieCategory = document.createElement('div');
+        movieCategory.classList.add('movie__category');
+        movieCategory.textContent = movie.genre_ids.map(id => genres[id]).join(', ');
 
-      const movieRating = document.createElement('div');
-      movieRating.classList.add('movie__rating');
-      movieRating.textContent = movie.vote_average.toFixed(1);
-      if (movie.vote_average >= 7) {
-        movieRating.classList.add('movie__rating--green');
-      } else if (movie.vote_average >= 4) {
-        movieRating.classList.add('movie__rating--orange');
-      } else if (movie.vote_average > 0) {
-        movieRating.classList.add('movie__rating--red');
-      } else {
-        movieRating.classList.add('movie__without--rating');
-        movieRating.textContent = '-';
-      }
+        const movieRating = document.createElement('div');
+        movieRating.classList.add('movie__rating');
+        movieRating.textContent = movie.vote_average.toFixed(1);
+        if (movie.vote_average >= 7) {
+          movieRating.classList.add('movie__rating--green');
+        } else if (movie.vote_average >= 4) {
+          movieRating.classList.add('movie__rating--orange');
+        } else if (movie.vote_average > 0) {
+          movieRating.classList.add('movie__rating--red');
+        } else {
+          movieRating.classList.add('movie__without--rating');
+          movieRating.textContent = '-';
+        }
 
-      movieCoverInner.addEventListener("click", () => openModal(movie.id))
+        movieCoverInner.addEventListener("click", () => openModal(movie.id))
 
-      movieCoverInner.appendChild(movieCover);
-      movieCoverInner.appendChild(movieCoverDarkened);
-      movieInfo.appendChild(movieTitle);
-      movieInfo.appendChild(movieCategory);
-      movieInfo.appendChild(movieRating);
-      movieCard.appendChild(movieCoverInner);
-      movieCard.appendChild(movieInfo);
+        movieCoverInner.appendChild(movieCover);
+        movieCoverInner.appendChild(movieCoverDarkened);
+        movieInfo.appendChild(movieTitle);
+        movieInfo.appendChild(movieCategory);
+        movieInfo.appendChild(movieRating);
+        movieCard.appendChild(movieCoverInner);
+        movieCard.appendChild(movieInfo);
 
-      moviesContainer.appendChild(movieCard);
-    });
-  } else {
-const moviesContainer = document.querySelector('.movies');
-const exceptionDiv = document.createElement('div');
-exceptionDiv.classList.add('exception');
-exceptionDiv.textContent = 'Помилка: не знайдено жодного фільму.';
-moviesContainer.appendChild(exceptionDiv);
+        moviesContainer.appendChild(movieCard);
+      });
+    } else {
+      const moviesContainer = document.querySelector('.movies');
+      const exceptionDiv = document.createElement('div');
+      exceptionDiv.classList.add('exception');
+      exceptionDiv.textContent = 'Помилка: не знайдено жодного фільму.';
+      moviesContainer.appendChild(exceptionDiv);
 
-    console.log("Немає результатів");
+      console.log("Немає результатів");
+    }
+  } catch (error) {
+    console.log(error);
   }
-} catch (error) {
-  console.log(error);
-}
 }
 
 const modalEl = document.querySelector(".modal");
@@ -145,13 +147,13 @@ function clearMovies() {
   while (elements.length > 0) {
     elements[0].parentNode.removeChild(elements[0]);
   }
-const exceptionElements = document.querySelectorAll('.exception');
+  const exceptionElements = document.querySelectorAll('.exception');
 
-exceptionElements.forEach(element => {
-  element.remove();
-});
+  exceptionElements.forEach(element => {
+    element.remove();
+  });
 
-  
+
 }
 
 function scrollToTop() {
@@ -223,7 +225,7 @@ function handleNextPrevButtonClick(event) {
   clearMovies();
   var currentPageElement = document.querySelector(".pagination__active");
   var currentPage = currentPageElement.textContent;
-  url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=uk-UA&page=${currentPage}`;
+  url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=${genreId}&language=uk-UA&page=${currentPage}`;
   getMovies(url);
 }
 paginationElements.addEventListener('click', handleNextPrevButtonClick);
@@ -339,10 +341,39 @@ async function searchMovies(event) {
   if (query === "") {
     getMovies(url);
     scrollToTop();
-    pagination.style.display='block';
+    pagination.style.display = 'block';
   } else {
     searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=uk-UA&query=${query}&page=${currentPage}&include_adult=false`;
     getMovies(searchUrl);
     scrollToTop();
   }
 }
+
+function getGenre() {
+  const elements = document.getElementsByClassName('genre__element');
+
+  function handleClick(event) {
+    const clickedElement = event.target;
+    clickedElement.classList.add('genre__active');
+    genreId = clickedElement.id;
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i];
+
+      if (element !== clickedElement) {
+        element.classList.remove('genre__active');
+      }
+    }
+    clearMovies();
+    url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=${genreId}&language=uk-UA&page=${currentPage}`;
+    getMovies(url);
+  }
+
+  for (let i = 0; i < elements.length; i++) {
+    const element = elements[i];
+    element.addEventListener('click', handleClick);
+  }
+
+}
+
+window.addEventListener('load', getGenre);
+

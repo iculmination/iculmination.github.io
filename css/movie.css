@@ -252,3 +252,39 @@ html, body {
   .header__language:hover{
     opacity: 0.8;
   }
+
+  @media (max-width: 600px) {
+    .movie__info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1{
+/*    font-size: 52px;       */
+      text-align: center;
+    }
+  
+    .movie__poster {
+      width: 250px;
+      height: auto;
+      margin: 0 20px;
+    }
+  
+    .movie__info--text {
+      padding-top: 40px;
+      margin-left: 0;
+      margin-right: 0;
+      text-align: left;
+    }
+
+    .movie__info{
+      margin: 0 30px;
+    }
+
+    .movie__h{
+      margin-left: 0;
+    }
+  }
+  

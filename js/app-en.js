@@ -1,6 +1,7 @@
 const apiKey = '31f6246705fead5778179a71d5408a0a';
 var currentPage = 1;
-var url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-EN&page=${currentPage}`;
+var genreId = ``;
+var url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=${genreId}&language=en-EN&page=${currentPage}`;
 const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-EN`;
 var searchUrl;
 
@@ -223,7 +224,7 @@ function handleNextPrevButtonClick(event) {
   clearMovies();
   var currentPageElement = document.querySelector(".pagination__active");
   var currentPage = currentPageElement.textContent;
-  url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-EN&page=${currentPage}`;
+  url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=${genreId}&language=en-EN&page=${currentPage}`;
   getMovies(url);
 }
 paginationElements.addEventListener('click', handleNextPrevButtonClick);
@@ -346,3 +347,31 @@ async function searchMovies(event) {
     scrollToTop();
   }
 }
+
+function getGenre() {
+  const elements = document.getElementsByClassName('genre__element');
+
+  function handleClick(event) {
+    const clickedElement = event.target;
+    clickedElement.classList.add('genre__active');
+    genreId = clickedElement.id;
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i];
+
+      if (element !== clickedElement) {
+        element.classList.remove('genre__active');
+      }
+    }
+    clearMovies();
+    url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=${genreId}&language=en-EN&page=${currentPage}`;
+    getMovies(url);
+  }
+
+  for (let i = 0; i < elements.length; i++) {
+    const element = elements[i];
+    element.addEventListener('click', handleClick);
+  }
+
+}
+
+window.addEventListener('load', getGenre);

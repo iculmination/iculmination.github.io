@@ -347,10 +347,12 @@ ul li {
     color: white;
 }
 
-.pagination__prev:hover, .pagination__next:hover, .pagination__button:hover{
+.pagination__prev:hover, .pagination__next:hover, .pagination__button:hover, .genre__element:hover{
     cursor: pointer;
     background-color: black;
     color: rgb(255, 94, 0);
+ /*  transition: transform 0.3s ease; */
+ /*  transform: scale(1.1); */
 }
 
 .modal__buttons {
@@ -442,3 +444,43 @@ ul li {
   .header__language:hover{
     opacity: 0.8;
   }
+  
+.genres{
+    position: relative;
+    width: 100%;
+    height: 100px;
+    padding: 40px;
+    padding-top: 80px;
+    align-items: center;
+    text-align: center;
+}
+
+.genre__element{
+    margin: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 8px;
+    background-color: #ffffff00;
+    color: rgb(255, 94, 0);
+}
+
+.genre__active{
+    background-color: rgb(255, 94, 0);
+    color: white;
+}
+
+@media (max-width: 785px) {
+   .genres{
+    height: 310px;
+   }    
+    
+}
+
+@media (max-width: 390px) {
+    .header__search--form {
+        width: 170px;
+    }
+    .genres{
+        height: 410px;
+       } 
+}
